@@ -9,10 +9,10 @@ class Measurement
 
     private $storage;
 
-    public function __construct()
+    public function __construct($clear = false)
     {
 
-        if (($this->storage = Cache::get('measurement')) == NULL) {
+        if (($this->storage = Cache::get('measurement')) == NULL || $clear) {
 
             $this->storage = (object)[
 

@@ -1,0 +1,57 @@
+<?php
+
+namespace Tests\Unit;
+
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Helpers\Measurement;
+
+class MeasurementTest extends TestCase
+{
+
+    private $measurement;
+
+
+    public function testBasicTest()
+    {
+
+        $tests = $this->dataSet();
+        $this->measurement = new Measurement(true);
+
+
+        while( date('s') == date('s'));
+
+
+        $time_start = date('c');
+        foreach ($tests as $test) {
+
+            $time_end = date('c');
+
+            $this->measurement->update($test[0])['timestamp'];
+            $response = $this->measurement->stats();
+
+            $this->assertInternalType('array', $response);
+            $this->assertEquals($response['min'], $test[1]);
+            $this->assertEquals($response['max'], $test[2]);
+            $this->assertEquals($response['avg'], $test[3]);
+            $this->assertEquals($response['time-start'], $time_start);
+            $this->assertEquals($response['time-end'], $time_end);
+
+            sleep(2);
+        }
+
+    }
+
+
+    protected function dataSet()
+    {
+        return [
+            [10, 10, 10, 10],
+            [20, 10, 20, 15],
+            [30, 10, 30, 20],
+            [-10, -10, 30, 12.5],
+            [1.5, -10, 30, 10.3]
+        ];
+    }
+
+}

@@ -1,4 +1,4 @@
- 1) Utwórz usługę REST we frameworku Yii służącą do gromadzenia i udostępniania danych na temat [np.: zanieczyszczenia powietrza/poziomu paliwa/ceny aktywów]. 
+ 1) Utwórz usługę REST we frameworku Laravel służącą do gromadzenia i udostępniania danych na temat [np.: zanieczyszczenia powietrza/poziomu paliwa/ceny aktywów]. 
 Usługa powinna udostępniać następujące endpointy:
 
 1. POST /update - przyjmować w body obiekt typu JSON z jednym atrybutem o nazwie value  (wartość typu double).
